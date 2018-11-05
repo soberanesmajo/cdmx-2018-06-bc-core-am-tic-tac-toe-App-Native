@@ -1,22 +1,18 @@
-# Tic tac toe - React Native
+# Tic tac toe - App Native
 
 ## Preámbulo
 
 En este proyecto vamos a construir un simple videojuego de _3 en raya_, también
 conocido como _Gato_ o _tic tac toe_ en inglés, para celulares y tabletas.
 
-Para construir el juego vamos a usar [React Native](https://facebook.github.io/react-native/),
-que nos permite construir aplicaciones _nativas_ (que no _híbridas_) que se
+Para construir el juego vamos a usar [React Native](https://facebook.github.io/react-native/), [Vue Native](https://vue-native.io/), [NativeScript](https://www.nativescript.org/) ó cualquier herramienta que sea de tu elección que nos permita construir aplicaciones _nativas_ ( **NO** _híbridas_) que se
 puedan instalar y ejecutar en dispositivos Android e iOS, y todo ello usando
-JavaScript y React para componer nuestra interfaz.
+JavaScript y La herramienta que elijas para componer nuestra interfaz.
 
 Nuestro público objetivo en este caso son niños en edad pre-escolar, así que el
 juego debe ser simple, intuitivo, con botones grandes, poco o nada de texto, ...
 
 ## Introducción
-
-React Native es una herramienta que nos permite construir aplicaciones nativas
-para Android e iOS usando JavaScript y React.
 
 Como desarrolladores web, sabemos que podemos contruir PWAs (_Progressive Web
 Apps_) dirigidas a todo tipo de dispositivos, incluyendo celulares y tabletas,
@@ -32,18 +28,17 @@ dispositivos móviles, con soluciones que van desde
 nativo, pasando por soluciones híbridas (como [Phonegap](https://phonegap.com/)).
 A diferencia de las soluciones híbridas, que han sido populares con
 desarrolladores web en el pasado, React Native nos permite construir
-aplicaciones realmente _nativas_, pero usando JavaScript y React. Esto significa
+aplicaciones realmente _nativas_, pero usando JavaScript y la herramienta elegida. Esto significa
 mejor _performance_ y acceso directo al sistema en vez de estar confinado a una
 vista _web_.
 
 ## Objetivos
 
 El objetivo principal de aprendizaje es tener una primera experiencia en
-desarrollo de aplicaciones nativas con React Native.
+desarrollo de aplicaciones **NATIVAS**.
 
-En este proyecto tendrás que construir una aplicación usando React Native y
-Expo, y publicarla en tu cuenta de Expo, para que se pueda instalar en cualquier
-dispositivo Android o iOS.
+En este proyecto tendrás que construir una aplicación **Nativa** y
+Expo, y así publicarla en tu cuenta de Expo, para que se pueda instalar en cualquier dispositivo Android o iOS.
 
 Para completar el proyecto tendrás que familiarizarte con conceptos como `View`,
 `Text` o `TouchableOpacity`, además del flujo de desarrollo propio de apps
@@ -51,11 +46,9 @@ nativas.
 
 ## Consideraciones generales
 
-La lógica del proyecto debe estar implementada completamente en JavaScript (ES6).
-En este proyecto está permitido usar librerías o frameworks.
+La lógica del proyecto debe estar implementada completamente en JavaScript (ES6) y la librería o framework que sea de tu elección.
 
-Este proyecto no incluye un _boilerplate_ per se. En vez de un _boilerplate_ te
-ofrecemos una serie de instrucciones (ver sección "Primeros pasos" más abajo)
+Este proyecto no incluye un _boilerplate_ per se. En vez de un _boilerplate_ te ofrecemos una serie de instrucciones (ver sección "Primeros pasos" más abajo)
 para que inicialices tu proyecto desde cero.
 
 ## Parte obligatoria
@@ -248,6 +241,8 @@ expo publish
 ## Tips / Pistas
 
 * [React Native](https://facebook.github.io/react-native/)
+* [Vue Native](https://vue-native.io/)
+* [Ionic](https://ionicframework.com/)
 * [Expo](https://expo.io/)
 * [Desarrollo Más Fácil React Native con Expo - Evato Tuts+](https://code.tutsplus.com/es/tutorials/easier-react-native-development-with-expo--cms-30546)
 * [Android Studio](https://developer.android.com/studio/)
