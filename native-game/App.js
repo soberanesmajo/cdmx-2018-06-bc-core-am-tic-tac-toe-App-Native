@@ -32,9 +32,15 @@ export default class App extends React.Component {
 
   onTilePress = (row, col) => {
     let currentPlayer = this.state.currentPlayer;
+
+    // Establece la casilla correcta
     let arr = this.state.gameState.slice();
     arr[row][col] = currentPlayer;
     this.setState({gameState: arr});
+
+    // Cambiar a otro jugador
+    let nextPlayer = (currentPlayer == 1) ? 2 : 1;
+    this.setState({currentPlayer: nextPlayer});
   }
 
   renderIcon = (row, col) => { // para renderizar los iconos, esta función recibe de parámetros donde se escontrarán los íconos: filas y columnas.
