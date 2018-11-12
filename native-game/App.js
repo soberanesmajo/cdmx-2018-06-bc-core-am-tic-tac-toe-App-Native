@@ -31,6 +31,11 @@ export default class App extends React.Component {
   }
 
   onTilePress = (row, col) => {
+    // No permite marcar casilla ya marcada
+    let value = this.state.gameState[row][col];
+    if (value != 0) {return;}
+
+    // tomar jugador actual
     let currentPlayer = this.state.currentPlayer;
 
     // Establece la casilla correcta
