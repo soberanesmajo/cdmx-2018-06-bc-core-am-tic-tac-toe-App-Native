@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { MaterialCommunityIcons as Icon} from 'react-native-vector-icons';
 
 export default class App extends React.Component {
   render() {
@@ -7,9 +8,11 @@ export default class App extends React.Component {
       <View style={styles.container}>
         <View style={{flexDirection: "row"}}>
           <View style={[styles.title, {borderLeftWidth:0, borderTopWidth:0}]}>
-            
+            <Icon name="close" style={styles.titleX}/>
           </View>
-          <View style={[styles.title, {borderTopWidth:0}]}/>
+          <View style={[styles.title, {borderTopWidth:0}]}>
+            <Icon name="circle-outline" style={styles.titleO}/>  
+          </View>
           <View style={[styles.title, {borderRightWidth:0, borderTopWidth:0}]}/>
         </View>
 
@@ -42,5 +45,21 @@ const styles = StyleSheet.create({
     borderWidth: 10,
     width: 100,
     height: 100,
-  } 
+  },
+
+  titleX: {
+    color: "red",
+    fontSize: 60,
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+
+  titleO: {
+    color: "green",
+    fontSize: 60,
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
+  }
 });
