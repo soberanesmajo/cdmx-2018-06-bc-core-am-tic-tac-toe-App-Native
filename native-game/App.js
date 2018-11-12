@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons as Icon} from 'react-native-vector-icons';
 import { black } from 'ansi-colors';
 
@@ -7,8 +7,12 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      gameState: [],
-      currentPlayer: "player1"
+      gameState: [
+        [0,0,0],
+        [0,0,0],
+        [0,0,0]
+      ],
+      currentPlayer: 1
     }
   }
 
@@ -17,7 +21,7 @@ export default class App extends React.Component {
   }
 
   initializeGame = () => {
-    this.setState({
+    this.setState({ // Cada arreglo es una fila del juego. Cero es el estado inicial.
       gameState: [
         [0,0,0],
         [0,0,0],
@@ -26,29 +30,59 @@ export default class App extends React.Component {
     });
   }
 
+  onTilePress = (row, col) => {
+    let currentPlayer = this.state.currentPlayer;
+    let arr = this.state.gameState.slice();
+    arr[row][col] = currentPlayer;
+    this.setState({gameState: arr});
+  }
+
+  renderIcon = (row, col) => { // para renderizar los iconos, esta función recibe de parámetros donde se escontrarán los íconos: filas y columnas.
+    let value = this.state.gameState[row][col];
+    switch(value) { // El condicional switch recibe de parámetro el estado inicial en filas y columnas.
+      case 1: return  <Icon name="close" style={styles.titleX}/>;
+      case 2: return  <Icon name="circle-outline" style={styles.titleO}/>;
+      default: return <View/>; // Si el valor es cero regresará una vista en blanco.
+    }
+  }
+
   render() {
-    return (
+    return ( // En cada vista (casilla) se llama la función renderIcon y como argumento la posición de cada casilla en fila y columna.
       <View style={styles.container}>
         <View style={{flexDirection: "row"}}>
-          <View style={[styles.title, {borderLeftWidth:0, borderTopWidth:0}]}>
-            <Icon name="close" style={styles.titleX}/>
-          </View>
-          <View style={[styles.title, {borderTopWidth:0}]}>
-            <Icon name="circle-outline" style={styles.titleO}/>  
-          </View>
-          <View style={[styles.title, {borderRightWidth:0, borderTopWidth:0}]}/>
+          <TouchableOpacity onPress={() => this.onTilePress(0,0)} style={[styles.title, {borderLeftWidth:0, borderTopWidth:0}]}> 
+            {this.renderIcon(0,0)} 
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => this.onTilePress(0,1)} style={[styles.title, {borderTopWidth:0}]}>
+            {this.renderIcon(0,1)}
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => this.onTilePress(0,2)} style={[styles.title, {borderRightWidth:0, borderTopWidth:0}]}>
+            {this.renderIcon(0,2)}
+          </TouchableOpacity>
         </View>
 
         <View style={{flexDirection: "row"}}>
-          <View style={[styles.title, {borderLeftWidth:0}]}/>
-          <View style={styles.title}/>
-          <View style={[styles.title, {borderRightWidth:0}]}/>
+          <TouchableOpacity onPress={() => this.onTilePress(1,0)} style={[styles.title, {borderLeftWidth:0}]}>
+            {this.renderIcon(1,0)}
+          </TouchableOpacity>                    
+          <TouchableOpacity onPress={() => this.onTilePress(1,1)} style={styles.title}>
+            {this.renderIcon(1,1)}
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => this.onTilePress(1,2)} style={[styles.title, {borderRightWidth:0}]}>
+            {this.renderIcon(1,2)}
+          </TouchableOpacity>
         </View>
 
         <View style={{flexDirection: "row"}}>
-          <View style={[styles.title, {borderLeftWidth:0, borderBottomWidth:0}]}/>
-          <View style={[styles.title, {borderBottomWidth:0}]}/>
-          <View style={[styles.title, {borderBottomWidth:0, borderRightWidth:0}]}/>
+          <TouchableOpacity onPress={() => this.onTilePress(2,0)} style={[styles.title, {borderLeftWidth:0, borderBottomWidth:0}]}>
+            {this.renderIcon(2,0)}
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => this.onTilePress(2,1)} style={[styles.title, {borderBottomWidth:0}]}>
+            {this.renderIcon(2,1)}
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => this.onTilePress(2,2)} style={[styles.title, {borderBottomWidth:0, borderRightWidth:0}]}>
+            {this.renderIcon(2,2)}
+          </TouchableOpacity>
         </View>
 
       </View>
