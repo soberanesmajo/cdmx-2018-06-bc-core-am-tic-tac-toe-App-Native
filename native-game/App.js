@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Alert, Button } from 'react-native';
 import { MaterialCommunityIcons as Icon} from 'react-native-vector-icons';
 import { black } from 'ansi-colors';
 
@@ -26,8 +26,45 @@ export default class App extends React.Component {
         [0,0,0],
         [0,0,0],
         [0,0,0]
-      ]
+      ],
+      currentPlayer: 1
     });
+  }
+
+  getWinner = () => {
+    const NUM_TILES = 3;
+    let arr = this.state.gameState;
+    let sum;
+
+    // Para comprobar filas
+    for(let i = 0; i < NUM_TILES; i++) {
+      sum = arr[i][0] + arr [i][1] + arr[i][2];
+      if (sum == 3) {return 1;}
+      else if (sum == -3) {return -1;}
+    }
+
+    // Para comprobar columnas
+    for(let i = 0; i < NUM_TILES; i++) {
+      sum = arr[0][i] + arr [1][i] + arr[2][i];
+      if (sum == 3) {return 1;}
+      else if (sum == -3) {return -1;}
+    }
+
+    // Para comprobar diagonales
+    sum = arr[0][0] + arr [1][1] + arr[2][2];
+      if (sum == 3) {return 1;}
+      else if (sum == -3) {return -1;}
+
+    sum = arr[2][0] + arr [1][1] + arr[0][2];
+    if (sum == 3) {return 1;}
+    else if (sum == -3) {return -1;}
+
+    // Si no hay ganadores
+    return 0;
+  }
+
+  onNewGamePress = () => {
+    this.initializeGame ();
   }
 
   onTilePress = (row, col) => {
@@ -44,15 +81,25 @@ export default class App extends React.Component {
     this.setState({gameState: arr});
 
     // Cambiar a otro jugador
-    let nextPlayer = (currentPlayer == 1) ? 2 : 1;
+    let nextPlayer = (currentPlayer == 1) ? -1 : 1;
     this.setState({currentPlayer: nextPlayer});
+
+    // Comprobar ganadores
+    let winner = this.getWinner();
+    if(winner == 1) {
+      Alert.alert("¡El jugador 1 es el ganador!");
+      this.initializeGame(); // se inicializa de nuevo el juego
+    } else if (winner == -1) {
+      Alert.alert("¡El jugador 2 es el ganador!");
+      this.initializeGame();
+    }
   }
 
   renderIcon = (row, col) => { // para renderizar los iconos, esta función recibe de parámetros donde se escontrarán los íconos: filas y columnas.
     let value = this.state.gameState[row][col];
     switch(value) { // El condicional switch recibe de parámetro el estado inicial en filas y columnas.
       case 1: return  <Icon name="close" style={styles.titleX}/>;
-      case 2: return  <Icon name="circle-outline" style={styles.titleO}/>;
+      case -1: return  <Icon name="circle-outline" style={styles.titleO}/>;
       default: return <View/>; // Si el valor es cero regresará una vista en blanco.
     }
   }
@@ -95,6 +142,9 @@ export default class App extends React.Component {
             {this.renderIcon(2,2)}
           </TouchableOpacity>
         </View>
+        
+        <View style={{paddingTop: 50}}/>
+        <Button title="Nueva Partida" onPress={this.onNewGamePress}/>
 
       </View>
     );
