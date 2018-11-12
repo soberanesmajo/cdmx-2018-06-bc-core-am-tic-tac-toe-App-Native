@@ -1,8 +1,31 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { MaterialCommunityIcons as Icon} from 'react-native-vector-icons';
+import { black } from 'ansi-colors';
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      gameState: [],
+      currentPlayer: "player1"
+    }
+  }
+
+  componentDidMount() { // porque no se puede setear un estado de un componente que no se ha montado aún. Entonces aquí se inicializa el juego.
+    this.initializeGame();
+  }
+
+  initializeGame = () => {
+    this.setState({
+      gameState: [
+        [0,0,0],
+        [0,0,0],
+        [0,0,0]
+      ]
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -45,21 +68,17 @@ const styles = StyleSheet.create({
     borderWidth: 10,
     width: 100,
     height: 100,
+    alignItems: "center",
+    justifyContent: "center"
   },
 
   titleX: {
     color: "red",
     fontSize: 60,
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
   },
 
   titleO: {
     color: "green",
     fontSize: 60,
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
   }
 });
